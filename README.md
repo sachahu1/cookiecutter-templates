@@ -6,6 +6,6 @@ functionalities may be added or removed as things evolve.
 
 To start using this template, simply run:
 ```shell
-cookiecutter gh:sachahu1/python-cookiecutter-template --directory="python"
+cookiecutter gh:sachahu1/cookiecutter-templates --directory="python"
 ```
 Then configure the project with your own paramaters.

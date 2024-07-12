@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#git init
+git init
 
 npm install
 
-#poetry run pre-commit install
