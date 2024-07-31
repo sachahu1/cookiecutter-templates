@@ -115,7 +115,6 @@ def setup(app):
     {"enable_math": True, "enable_inline_math": True, "enable_eval_rst": True},
     True,
   )
-  # app.add_transform(AutoStructify)
   app.add_object_type(
     "confval",
     "confval",
