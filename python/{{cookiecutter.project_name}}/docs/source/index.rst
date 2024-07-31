@@ -1,9 +1,4 @@
-.. starter documentation master file, created by
-   sphinx-quickstart on Wed Sep 15 15:22:46 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to starter's documentation!
+{{ cookiecutter.package_name }} Documentation
 ===================================
 
 .. toctree::
@@ -11,8 +6,12 @@ Welcome to starter's documentation!
    :glob:
    :caption: Contents:
 
+
    custom/pre-modules/*
-   modules
+
+   API Reference <autoapi/{{ cookiecutter.package_name }}/index>
+
+   examples.rst
    custom/post-modules/*
 
 
