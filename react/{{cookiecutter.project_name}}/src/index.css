@@ -1,0 +1,11 @@
+@layer tailwind {
+  @tailwind base;
+}
+@tailwind components;
+@tailwind utilities;
+
+/*
+* Thanks to @layer rule, tailwind base get lower "priority"
+* than mantine css rules even if they have same specificity.
+* Thanks to this, we CAN use preflight reset from tailwind.
+*/
