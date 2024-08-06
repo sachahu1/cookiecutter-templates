@@ -2,11 +2,19 @@
     "project_name": "demo-project",
     "package_name": "{{ cookiecutter.project_name.lower().replace('-', '_') }}",
     "package_description": "Default description",
-    "repo_url": "https://github.com/sachahu1",
     "author": "Sacha Hu",
     "email": "sacha.hu@mindsparkai.com",
+    "github_username": "sachahu1",
     "python_version": ">=3.9,<3.12",
     "year": "{% now 'utc', '%Y' %}",
     "company": "MindsparkAI LTD.",
-    "_extensions": ["jinja2_time.TimeExtension"]
+    "hosted_docs_url": "https://www.sachahu.com",
+    "domain_name": "sachahu.com",
+    "ci": ["github", "none"],
+    "_extensions": ["jinja2_time.TimeExtension"],
+    "_copy_without_render": [
+        "*.html"
+    ]
 }
+
+

@@ -1,5 +1,12 @@
 # {{ cookiecutter.project_name }}
 
+{% if cookiecutter.ci == "github" -%}
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/run-tests.yaml?branch=main&label=Tests)
+{% endif %}
+![GitHub Release](https://img.shields.io/github/v/release/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }})
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/{{ cookiecutter.package_name }})
+![GitHub Repo stars](https://img.shields.io/github/stars/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }})
 
 ## Installation
 ### Installing Poetry
@@ -28,3 +35,5 @@ To build the documentation you can simply use the docker image. To do so, simply
 ```shell
 docker build . -f Dockerfile --target documentation -t {{cookiecutter.package_name}}-docs
 ```
+
+[//]: # (//# todo:  Add AWS Account ID and AWS Region)

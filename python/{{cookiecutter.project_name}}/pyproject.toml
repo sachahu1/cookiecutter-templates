@@ -6,10 +6,10 @@ authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
 packages = [
     { include = "{{ cookiecutter.package_name }}" }
 ]
-readme = "./README.md"
+readme = "README.md"
 maintainers = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
-repository = "{{ cookiecutter.repo_url }}/{{ cookiecutter.project_name }}"
-
+repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}"
+documentation = "{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name|lower }}/latest/index.html"
 
 [tool.poetry.dependencies]
 python = "{{ cookiecutter.python_version }}"
@@ -39,6 +39,7 @@ sphinx-rtd-theme = "^2.0.0"
 myst-parser = "^3.0.1"
 sphinx-copybutton = "^0.5.2"
 sphinx-autoapi = "^3.2.1"
+gitpython = "^3.1.43"
 
 [build-system]
 requires = ["poetry-core"]
