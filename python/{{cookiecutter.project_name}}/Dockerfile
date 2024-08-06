@@ -40,7 +40,7 @@ RUN poetry install --only main --no-ansi --no-interaction
 
 FROM build-env as tests
 
-RUN poetry install --without=test
+RUN poetry install --without test
 COPY tests $work_dir/tests
 
 CMD poetry run coverage run -m pytest ; coverage xml -o test_results/coverage.xml
