@@ -11,7 +11,6 @@
     "hosted_docs_url": "https://www.sachahu.com",
     "domain_name": "sachahu.com",
     "ci": ["github", "none"],
-    "_extensions": ["jinja2_time.TimeExtension"],
     "_copy_without_render": [
         "*.html"
     ]
