@@ -2,18 +2,31 @@
     "project_name": "demo-project",
     "package_name": "{{ cookiecutter.project_name.lower().replace('-', '_') }}",
     "package_description": "Default description",
-    "author": "Sacha Hu",
-    "email": "sacha.hu@mindsparkai.com",
-    "github_username": "sachahu1",
+    "author": "Firstname Lastname",
+    "email": "email@example.com",
+    "github_username": "",
+    "company": "",
     "python_version": ">=3.9,<3.12",
-    "year": "{% now 'utc', '%Y' %}",
-    "company": "MindsparkAI LTD.",
-    "hosted_docs_url": "https://www.sachahu.com",
-    "domain_name": "sachahu.com",
+    "hosted_docs_url": "",
+    "docs_upload_bucket_name": "",
     "ci": ["github", "none"],
+    "_year": "{% now 'utc', '%Y' %}",
     "_copy_without_render": [
         "*.html"
-    ]
+    ],
+    "__prompts__": {
+        "project_name": "Input your project name.",
+        "package_name": "Input your package name.",
+        "package_description": "Input a description of your package.",
+        "author": "Author full name",
+        "email": "Author email",
+        "github_username": "Github username",
+        "company": "Company name",
+        "python_version": "Allowed python versions",
+        "hosted_docs_url": "",
+        "docs_upload_bucket_name": "",
+        "ci": "Choose a CI/CD pipeline"
+    }
 }
 
 
