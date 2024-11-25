@@ -45,23 +45,28 @@ COPY tests $work_dir/tests
 
 CMD poetry run coverage run -m pytest ; coverage xml -o test_results/coverage.xml
 
-FROM build-env as documentation
+FROM build-env as build-documentation
 
 ENV SPHINX_APIDOC_OPTIONS=members
 
+RUN apt-get update && apt-get upgrade -y
+
 # Install documentation dependencies
-RUN apt-get install --no-install-recommends -y make
-RUN poetry install --no-ansi --no-interaction --no-dev
+RUN apt-get install --no-install-recommends -y make git
+RUN poetry install --no-ansi --no-interaction --with=documentation
 
 # Copy in documentation files
 COPY docs $work_dir/docs
+COPY examples $work_dir/examples
+COPY .git $work_dir/.git
 
 # Run Sphinx generation
-RUN poetry run sphinx-apidoc --separate -f -o docs/source/ . test/*
+RUN poetry run sphinx-build -M html docs/source/ /docs/build
 
-# Build HTML docs
-RUN cd docs && make html
+FROM nginx AS documentation
 
+COPY --from=build-documentation /docs/build/html /usr/share/nginx/html
+# Use NGinx to serve the static documentation
 
 FROM build-env as lambda
 

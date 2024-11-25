@@ -31,9 +31,25 @@ That's it, the package is installed. Move to the next section to learn how to us
 ## Getting Started
 < Add instructions on how to use project here >
 ## Building the documentation
-To build the documentation you can simply use the docker image. To do so, simply run:
+### Using Docker
+To access the documentation locally, the easiest way is to use the docker image. To do so, simply run:
 ```shell
 docker build . -f Dockerfile --target documentation -t {{cookiecutter.package_name}}-docs
+docker run -p 80:80 -it {{cookiecutter.package_name}}-docs
 ```
+Then navigate to [http://localhost](http://localhost)
 
-[//]: # (//# todo:  Add AWS Account ID and AWS Region)
+### Manually
+Alternatively you can build the documentation yourself.
+First, make sure you have the dependencies installed:
+```shell
+poetry install --with=documentation
+```
+Then build the documentation:
+```shell
+poetry run sphinx-build -M html docs/source/ docs/build
+```
+Then open the documentation in your browser:
+```shell
+open docs/build/html/index.html
+```
