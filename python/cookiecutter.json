@@ -25,8 +25,8 @@
         "company": "Company name",
         "python_version": "Allowed python versions",
         "hosted_docs_url": "The URL to your website (where the docs will be available)",
-        "docs_upload_bucket_name": "The name of the AWS bucket where the docs will be pushed.",
-        "aws_account_number": "The AWS account where the bucket is.",
+        "docs_upload_bucket_name": "The name of the AWS bucket where the docs will be pushed. - Ignore if No CI",
+        "aws_account_number": "The AWS account where the bucket is. - Ignore if No CI",
         "ci": "Choose a CI/CD pipeline"
     }
 }
