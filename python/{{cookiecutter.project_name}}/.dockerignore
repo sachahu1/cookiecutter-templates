@@ -8,4 +8,4 @@
 !poetry.lock
 
 !.git
-!.examples
+!examples

@@ -5,13 +5,13 @@
     "author": "Firstname Lastname",
     "email": "email@example.com",
     "github_username": "",
-    "company": "",
-    "python_version": ">=3.9,<3.12",
+    "company": "{{ cookiecutter.github_username }}",
+    "python_version": ">=3.10,<3.14",
     "hosted_docs_url": "",
     "docs_upload_bucket_name": "",
     "aws_account_number": "",
     "ci": ["github", "none"],
-    "_year": "{% now 'utc', '%Y' %}",
+    "_extensions": ["cookiecutter.extensions.TimeExtension"],
     "_copy_without_render": [
         "*.html"
     ],

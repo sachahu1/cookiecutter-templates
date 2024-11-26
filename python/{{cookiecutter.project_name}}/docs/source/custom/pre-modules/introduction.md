@@ -1,30 +1,60 @@
-# Introduction
+# {{ cookiecutter.project_name }}
 
+{% if cookiecutter.ci == "github" -%}
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/run-tests.yaml?branch=main&label=Tests)
+{% endif %}
+![GitHub Release](https://img.shields.io/github/v/release/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }})
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/{{ cookiecutter.package_name }})
+![GitHub Repo stars](https://img.shields.io/github/stars/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }})
 
 ## Installation
-### Installing Poetry
-This tool uses poetry. If you already have poetry installed,
-please skip to the next section. Otherwise, let's first setup poetry.
 
-To install poetry, simply run this command:
+### Installing the package (from PyPI)
+You can install this package from PyPI using:
 ```shell
-curl -sSL https://install.python-poetry.org | python3 -
+pip install {{ cookiecutter.project_name }}
 ```
-You can find out more about poetry installation [here](https://python-poetry.org/docs/master/#installation).
 
-That's it, poetry is set up.
+### Installing the package (from source)
+You can install this package from source using:
+```shell
+pip install git+https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}.git
+```
 
-### Installing the package
-Thanks to poetry, installing this package is very simple and can be done in a single command. Simply run:
+### Installing the package (Manual)
+You can also install the package yourself by cloning the repo:
+```shell
+git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}.git
+```
+
+And installing the package with poetry:
 ```shell
 poetry install
 ```
-That's it, the package is installed. Move to the next section to learn how to use this package.
 
 ## Getting Started
 < Add instructions on how to use project here >
 ## Building the documentation
-To build the documentation you can simply use the docker image. To do so, simply run:
+### Using Docker
+To access the documentation locally, the easiest way is to use the docker image. To do so, simply run:
 ```shell
 docker build . -f Dockerfile --target documentation -t {{cookiecutter.package_name}}-docs
+docker run -p 80:80 -it {{cookiecutter.package_name}}-docs
+```
+Then navigate to [http://localhost](http://localhost)
+
+### Manually
+Alternatively you can build the documentation yourself.
+First, make sure you have the dependencies installed:
+```shell
+poetry install --with=documentation
+```
+Then build the documentation:
+```shell
+poetry run sphinx-build -M html docs/source/ docs/build
+```
+Then open the documentation in your browser:
+```shell
+open docs/build/html/index.html
 ```

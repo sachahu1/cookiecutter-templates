@@ -9,24 +9,29 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }})
 
 ## Installation
-### Installing Poetry
-This tool uses poetry. If you already have poetry installed,
-please skip to the next section. Otherwise, let's first setup poetry.
 
-To install poetry, simply run this command:
+### Installing the package (from PyPI)
+You can install this package from PyPI using:
 ```shell
-curl -sSL https://install.python-poetry.org | python3 -
+pip install {{ cookiecutter.project_name }}
 ```
-You can find out more about poetry installation [here](https://python-poetry.org/docs/master/#installation).
 
-That's it, poetry is set up.
+### Installing the package (from source)
+You can install this package from source using:
+```shell
+pip install git+https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}.git
+```
 
-### Installing the package
-Thanks to poetry, installing this package is very simple and can be done in a single command. Simply run:
+### Installing the package (Manual)
+You can also install the package yourself by cloning the repo:
+```shell
+git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}.git
+```
+
+And installing the package with poetry:
 ```shell
 poetry install
 ```
-That's it, the package is installed. Move to the next section to learn how to use this package.
 
 ## Getting Started
 < Add instructions on how to use project here >
