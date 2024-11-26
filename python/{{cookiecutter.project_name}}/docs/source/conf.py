@@ -157,11 +157,11 @@ html_theme_options = {
 
 repo = git.Repo(search_parent_directories=True)
 versions = [
-  (tag_ref.name, f"{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name|lower }}/pages/{tag_ref.name}")
+  (tag_ref.name, f"{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name }}/pages/{tag_ref.name}")
   for tag_ref in git.Repo("../../").tags
 ]
 
-versions.append(("latest", "{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name|lower }}/latest"))
+versions.append(("latest", "{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name }}/latest"))
 
 html_context = {
   "current_version": "0.0.1",

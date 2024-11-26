@@ -9,7 +9,7 @@ packages = [
 readme = "README.md"
 maintainers = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
 repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}"
-documentation = "{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name|lower }}/latest/index.html"
+documentation = "{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name }}/latest/index.html"
 
 [tool.poetry.dependencies]
 python = "{{ cookiecutter.python_version }}"
