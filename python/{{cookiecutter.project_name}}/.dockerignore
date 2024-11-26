@@ -6,3 +6,6 @@
 !README.md
 !pyproject.toml
 !poetry.lock
+
+!.git
+!examples

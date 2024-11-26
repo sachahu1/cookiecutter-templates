@@ -1,0 +1,99 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: ["Run Tests"]
+    types: [completed]
+    branches:
+      - main
+      - dev
+
+env:
+  PROJECT_NAME : {{ cookiecutter.project_name }}
+
+{% raw -%}
+jobs:
+  release:
+    name: Release pushed tag
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "^3.11.0"
+      #----------------------------------------------
+      #  -----  install & configure poetry  -----
+      #----------------------------------------------
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Python Semantic Release
+        uses: python-semantic-release/python-semantic-release@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Package build
+        run: |
+          poetry build
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.3.5
+        with:
+          name: dist
+          path: ./dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - release
+    permissions:
+      id-token: write
+    environment:
+      name: pypi
+      url: https://pypi.org/p/${{ env.PROJECT_NAME }}
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: dist
+          path: ./dist
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  trigger-docs:
+    runs-on: ubuntu-latest
+    needs:
+      - release
+    permissions:
+      actions: write
+    steps:
+      - name: Invoke Documentation Workflow
+        uses: benc-uk/workflow-dispatch@v1.2.4
+        with:
+          workflow: Build And Release Docs
+
+  trigger-rebase:
+    runs-on: ubuntu-latest
+    needs:
+      - release
+    permissions:
+      actions: write
+    steps:
+      - name: Invoke rebase Workflow
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: benc-uk/workflow-dispatch@v1.2.4
+        with:
+          workflow: Automatic Rebase
+
+
+{% endraw -%}

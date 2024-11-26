@@ -2,11 +2,33 @@
     "project_name": "demo-project",
     "package_name": "{{ cookiecutter.project_name.lower().replace('-', '_') }}",
     "package_description": "Default description",
-    "repo_url": "https://github.com/sachahu1",
-    "author": "Sacha Hu",
-    "email": "sacha.hu@mindsparkai.com",
-    "python_version": ">=3.9,<3.12",
-    "year": "{% now 'utc', '%Y' %}",
-    "company": "MindsparkAI LTD.",
-    "_extensions": ["jinja2_time.TimeExtension"]
+    "author": "Firstname Lastname",
+    "email": "email@example.com",
+    "github_username": "",
+    "company": "{{ cookiecutter.github_username }}",
+    "python_version": ">=3.10,<3.14",
+    "hosted_docs_url": "",
+    "docs_upload_bucket_name": "",
+    "aws_account_number": "",
+    "ci": ["github", "none"],
+    "_extensions": ["cookiecutter.extensions.TimeExtension"],
+    "_copy_without_render": [
+        "*.html"
+    ],
+    "__prompts__": {
+        "project_name": "Input your project name.",
+        "package_name": "Input your package name.",
+        "package_description": "Input a description of your package.",
+        "author": "Author full name",
+        "email": "Author email",
+        "github_username": "Github username",
+        "company": "Company name",
+        "python_version": "Allowed python versions",
+        "hosted_docs_url": "The URL to your website (where the docs will be available)",
+        "docs_upload_bucket_name": "The name of the AWS bucket where the docs will be pushed. - Ignore if No CI",
+        "aws_account_number": "The AWS account where the bucket is. - Ignore if No CI",
+        "ci": "Choose a CI/CD pipeline"
+    }
 }
+
+
