@@ -1,9 +1,9 @@
-"""abc
+"""A basic example.
 
 .. literalinclude:: /../../examples/empty_example.py
    :language: python
    :linenos:
-   :lines: 9-11
+   :lines: 11-
 """
 
 __all__ = []

@@ -150,3 +150,4 @@ auth.toml
 # Exclude all RST files appart from index.rst
 *.rst
 !index.rst
+!docs/source/examples.rst
