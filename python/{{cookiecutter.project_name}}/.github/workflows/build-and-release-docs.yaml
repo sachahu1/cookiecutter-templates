@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 env:
   AWS_REGION: eu-west-2
-  AWS_OIDC_ROLE_ARN: arn:aws:iam::980416368045:role/GitHubAction-AssumeRoleWithAction
+  AWS_OIDC_ROLE_ARN: arn:aws:iam::{{ cookiecutter.aws_account_number }}:role/GitHubAction-AssumeRoleWithAction
   DOCS_UPLOAD_URL: s3://{{ cookiecutter.docs_upload_bucket_name }}/docs/{{ cookiecutter.project_name }}
 
 jobs:
