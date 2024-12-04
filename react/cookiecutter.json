@@ -6,4 +6,14 @@
     "author": "Firstname Lastname",
     "email": "email@example.com",
     "github_username": "",
+
+    "__prompts__": {
+        "project_name": "Input your project name.",
+        "package_name": "Input your package name.",
+        "website_name": "The name of your website.",
+        "description": "Input a description of your project.",
+        "author": "Author full name",
+        "email": "Author email",
+        "github_username": "Github username"
+    }
 }
