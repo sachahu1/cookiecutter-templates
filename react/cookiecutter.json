@@ -1,0 +1,19 @@
+{
+    "project_name": "demo-project",
+    "package_name": "{{ cookiecutter.project_name.lower().replace('-', '_') }}",
+    "website_name": "{{ cookiecutter.project_name.capitalize().replace('-', ' ') }}",
+    "description": "Default description",
+    "author": "Firstname Lastname",
+    "email": "email@example.com",
+    "github_username": "",
+
+    "__prompts__": {
+        "project_name": "Input your project name.",
+        "package_name": "Input your package name.",
+        "website_name": "The name of your website.",
+        "description": "Input a description of your project.",
+        "author": "Author full name",
+        "email": "Author email",
+        "github_username": "Github username"
+    }
+}

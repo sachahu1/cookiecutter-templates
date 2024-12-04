@@ -1,0 +1,11 @@
+*
+**
+!docs
+!tests
+!{{ cookiecutter.package_name }}
+!README.md
+!pyproject.toml
+!poetry.lock
+
+!.git
+!examples

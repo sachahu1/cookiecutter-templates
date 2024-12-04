@@ -1,0 +1,59 @@
+name: Build And Release Docs
+
+on: workflow_dispatch
+
+env:
+  AWS_REGION: eu-west-2
+  AWS_OIDC_ROLE_ARN: arn:aws:iam::{{ cookiecutter.aws_account_number }}:role/GitHubAction-AssumeRoleWithAction
+  DOCS_UPLOAD_URL: s3://{{ cookiecutter.docs_upload_bucket_name }}/docs/{{ cookiecutter.project_name }}
+
+{% raw -%}
+jobs:
+
+  build-release-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "^3.11.0"
+      #----------------------------------------------
+      #  -----  install & configure poetry  -----
+      #----------------------------------------------
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      #----------------------------------------------
+      # install dependencies if cache does not exist
+      #----------------------------------------------
+      - name: Install dependencies
+        run: poetry install --only documentation
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: ${{ env.AWS_OIDC_ROLE_ARN }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Build and Deploy docs
+        run: |
+          poetry run sphinx-build -M html docs/source/ docs/build
+
+          aws s3 sync docs/build/html ${{ env.DOCS_UPLOAD_URL }}/pages/v$(poetry version --short) --delete
+
+          if [[ "${GITHUB_REF##*/}" == "main" ]]; then
+            aws s3 sync docs/build/html ${{ env.DOCS_UPLOAD_URL }}/latest --delete
+          fi
+
+          rm -rf docs/build
+{% endraw -%}

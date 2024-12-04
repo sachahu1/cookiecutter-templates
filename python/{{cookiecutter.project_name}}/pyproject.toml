@@ -1,0 +1,126 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_name }}"
+version = "0.1.0"
+description = "{{ cookiecutter.package_description }}"
+authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
+packages = [
+    { include = "{{ cookiecutter.package_name }}" }
+]
+readme = "README.md"
+maintainers = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
+repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}"
+documentation = "{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name }}/latest/index.html"
+
+[tool.poetry.dependencies]
+python = "{{ cookiecutter.python_version }}"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.5"
+pre-commit = "^3.7.1"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^6.2.5"
+pytest-mock = "^3.14.0"
+coverage = {version = "^6.4.2", extras = ["toml"]}
+
+[tool.poetry.group.documentation]
+optional = true
+
+[tool.poetry.group.documentation.dependencies]
+Sphinx = "^7.3.7"
+sphinxcontrib-napoleon = "^0.7"
+sphinx-rtd-theme = "^2.0.0"
+myst-parser = "^3.0.1"
+sphinx-copybutton = "^0.5.2"
+sphinx-autoapi = "^3.2.1"
+gitpython = "^3.1.43"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --junit-xml=test_results/tests.xml"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["{{ cookiecutter.package_name }}"]
+
+[tool.poetry.scripts]
+run_{{ cookiecutter.package_name }} = "{{ cookiecutter.package_name }}.cli:run"
+
+[tool.ruff]
+line-length = 79
+indent-width = 2
+exclude = [".venv", ".env", ".git", "tests"]
+
+
+[tool.ruff.lint]
+# Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
+# overlap with the use of a formatter, like Black, but we can override this behavior by
+# explicitly adding the rule.
+extend-select = [
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "ERA", # flake8-eradicate/eradicate
+    "I",   # isort
+    "N",   # pep8-naming
+    "PIE", # flake8-pie
+    "PGH", # pygrep
+    "RUF", # ruff checks
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+    "TCH", # flake8-type-checking
+    "TID", # flake8-tidy-imports
+    "UP",  # pyupgrade
+]
+fixable = ["ALL"]
+ignore = ["SIM117"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+lines-after-imports = 2
+known-first-party = ["{{ cookiecutter.package_name }}"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+
+[tool.semantic_release]
+version_variables = [
+    "{{ cookiecutter.package_name }}/__init__.py:__version__",
+    "docs/source/conf.py:release",
+    "docs/source/conf.py:html_context.current_version",
+]
+version_toml = [
+    "pyproject.toml:tool.poetry.version"
+]
+upload_to_pypi = false
+upload_to_release = true
+
+[tool.semantic_release.branches.main]
+match = "(main|master)"
+prerelease = false
+
+[tool.semantic_release.branches.dev]
+match = "dev"
+prerelease = true
+prerelease_token = "rc"
+
+[tool.semantic_release.branches."feature/*"]
+match = "(feature/*)"
+prerelease = true
+prerelease_token = "alpha"
