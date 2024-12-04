@@ -1,12 +1,13 @@
 const BaseView = () => {
 
 
-    return (
+  return (
 
-        <div className="h-screen">
+    <div className="h-screen">
 
-        </div>
+    </div>
 
-    )
-}
+  );
+
+};
 export default BaseView;

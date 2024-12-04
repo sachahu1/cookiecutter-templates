@@ -6,19 +6,20 @@ import BaseView from "./views/baseView.tsx";
 const FrontPage = () => {
 
 
-    return (
-        <div className="relative min-h-[100vh] font-rubik tracking-wide">
-            <div
-                 className="w-screen z-40 select-none ">
-                <NavBar />
-            </div>
+  return (
+    <div className="relative min-h-[100vh] font-rubik tracking-wide">
+      <div
+        className="w-screen z-40 select-none ">
+        <NavBar/>
+      </div>
 
-            <BaseView />
+      <BaseView/>
 
-            <Footer/>
-        </div>
+      <Footer/>
+    </div>
 
-    );
-}
+  );
+
+};
 
 export default FrontPage;
