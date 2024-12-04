@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "description": "{{ cookiecutter.description }}",
-  "repository": "{{ cookiecutter.repo_url }}",
-  "homepage": "{{ cookiecutter.repo_url }}",
+  "repository": "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}",
+  "homepage": "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}",
   "author": {
     "name": "{{ cookiecutter.author }}",
     "email": "{{ cookiecutter.email }}"
