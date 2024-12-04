@@ -1,21 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
+  "content": [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-    extend: {
-      fontFamily: {
+  "theme": {
+    "extend": {
+      "fontFamily": {
 
       },
-      colors: {
+      "colors": {
 
       },
-      animation: {
+      "animation": {
 
       },
     },
   },
-  plugins: [],
-}
+  "plugins": [],
+};
