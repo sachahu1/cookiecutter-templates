@@ -1,0 +1,124 @@
+[project]
+name = "{{ cookiecutter.project_name }}"
+version = "0.1.0"
+description = "{{ cookiecutter.package_description }}"
+authors = [
+    {name = "{{ cookiecutter.author }}", email = "{{ cookiecutter.email }}"}
+]
+packages = [
+    { include = "{{ cookiecutter.package_name }}" }
+]
+readme = "README.md"
+maintainers = [
+    {name = "{{ cookiecutter.author }}", email = "{{ cookiecutter.email }}"}
+]
+repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}"
+documentation = "{{ cookiecutter.hosted_docs_url }}/docs/{{ cookiecutter.project_name }}/latest/index.html"
+requires-python = "{{ cookiecutter.python_version }}"
+dependencies = [
+
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.10",
+    "pre-commit>=4.1.0"
+]
+
+test = [
+    "pytest>=8.3.5",
+    "pytest-mock>=3.14.0",
+    "coverage[toml]>=7.6.12 ",
+]
+documentation = [
+    "Sphinx>=8.2.3",
+    "sphinx-rtd-theme>=3.0.2 ",
+    "myst-parser>=4.0.1",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-autoapi>=3.6.0 ",
+    "gitpython>=3.1.44",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --junit-xml=test_results/tests.xml"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["{{ cookiecutter.package_name }}"]
+
+[project.scripts]
+run_{{ cookiecutter.package_name }} = "{{ cookiecutter.package_name }}.cli:run"
+
+[tool.ruff]
+line-length = 79
+indent-width = 2
+exclude = [".venv", ".env", ".git", "tests"]
+
+
+[tool.ruff.lint]
+# Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
+# overlap with the use of a formatter, like Black, but we can override this behavior by
+# explicitly adding the rule.
+extend-select = [
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "ERA", # flake8-eradicate/eradicate
+    "I",   # isort
+    "N",   # pep8-naming
+    "PIE", # flake8-pie
+    "PGH", # pygrep
+    "RUF", # ruff checks
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+    "TCH", # flake8-type-checking
+    "TID", # flake8-tidy-imports
+    "UP",  # pyupgrade
+]
+fixable = ["ALL"]
+ignore = ["SIM117"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+lines-after-imports = 2
+known-first-party = ["{{ cookiecutter.package_name }}"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+
+[tool.semantic_release]
+version_variables = [
+    "{{ cookiecutter.package_name }}/__init__.py:__version__",
+    "docs/source/conf.py:release",
+    "docs/source/conf.py:html_context.current_version",
+]
+version_toml = [
+    "pyproject.toml:project.version"
+]
+upload_to_pypi = false
+upload_to_release = true
+
+[tool.semantic_release.branches.main]
+match = "(main|master)"
+prerelease = false
+
+[tool.semantic_release.branches.dev]
+match = "dev"
+prerelease = true
+prerelease_token = "rc"
+
+[tool.semantic_release.branches."feature/*"]
+match = "(feature/*)"
+prerelease = true
+prerelease_token = "alpha"

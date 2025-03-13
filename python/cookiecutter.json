@@ -11,6 +11,7 @@
     "docs_upload_bucket_name": "",
     "aws_account_number": "",
     "ci": ["github", "none"],
+    "tool": ["poetry", "uv"],
     "_extensions": ["cookiecutter.extensions.TimeExtension"],
     "_copy_without_render": [
         "*.html"
@@ -27,7 +28,8 @@
         "hosted_docs_url": "The URL to your website (where the docs will be available)",
         "docs_upload_bucket_name": "The name of the AWS bucket where the docs will be pushed. - Ignore if No CI",
         "aws_account_number": "The AWS account where the bucket is. - Ignore if No CI",
-        "ci": "Choose a CI/CD pipeline"
+        "ci": "Choose a CI/CD pipeline",
+        "tool": "Choose a python package manager"
     }
 }
 

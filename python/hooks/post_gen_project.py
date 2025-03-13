@@ -4,6 +4,8 @@ import shutil
 REMOVE_PATHS = [
     '{% if cookiecutter.ci != "circleci" %}.circleci{% endif %}',
     '{% if cookiecutter.ci != "github" %}.github{% endif %}',
+    '{% if cookiecutter.tool != "poetry" %}pyproject.toml{% endif %}',
+    '{% if cookiecutter.tool != "uv" %}uv-pyproject.toml{% endif %}',
 ]
 
 for path in REMOVE_PATHS:
